@@ -1,0 +1,47 @@
+package TamishraAutomation.PageObjectModel;
+
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
+
+import TamishraAutomation.AbstractComponents.AbstractComponents;
+
+public class checkOutProduct extends AbstractComponents {
+	WebDriver driver;
+	public checkOutProduct(WebDriver driver) {
+		super(driver);
+		this.driver= driver;
+		PageFactory.initElements(driver, this);
+	}
+	
+	@FindBy(css="input[placeholder='Select Country']")
+	WebElement typeCountry;
+	
+	@FindBy(css="section.ta-results")
+	List<WebElement> getSuggestionList;
+	
+	@FindBy(css=".action__submit")
+	WebElement selectCountry;
+	
+	By autoSuggestList=By.cssSelector("section.ta-results");
+	
+	public WebElement SelectCountry(String cont) {
+		
+		typeCountry.sendKeys(cont);
+		waitForElementToAppear(autoSuggestList);
+		//return getSuggestionList;
+		WebElement country= getSuggestionList.stream().filter(autoSuggest->autoSuggest.getText().contains("India")).findFirst().orElse(null);
+	    return country;
+		
+	}
+	public ConfirmationPage submitOrder() {
+		
+		selectCountry.click();;
+		return new ConfirmationPage(driver);
+	}
+	
+}

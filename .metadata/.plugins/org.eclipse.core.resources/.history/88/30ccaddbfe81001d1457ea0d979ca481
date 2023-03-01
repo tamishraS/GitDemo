@@ -1,0 +1,30 @@
+import java.util.Iterator;
+import java.util.Set;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class ChromeDriverInitialization {
+
+	public static void main(String[] args) throws Exception {
+		
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\tamishra.senapati\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver= new ChromeDriver();
+		driver.get("https://qaclickacademy.com/");
+		
+		System.out.println(driver.findElements(By.tagName("a")).size());
+		
+		Thread.sleep(5000);
+		Set<String> alert= driver.getWindowHandles();
+		Iterator<String> itr= alert.iterator();
+		String parent= itr.next();
+		String child= itr.next();
+		driver.switchTo().window(child);
+		driver.findElement(By.xpath("//button[text()='NO THANKS']")).click();
+		
+
+	}
+
+}

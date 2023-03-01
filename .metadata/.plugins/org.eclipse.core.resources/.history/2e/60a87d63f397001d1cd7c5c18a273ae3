@@ -1,0 +1,57 @@
+package TamishraAutomation;
+
+import java.time.Duration;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import TamishraAutomation.PageObjectModel.CartPage;
+import TamishraAutomation.PageObjectModel.ConfirmationPage;
+import TamishraAutomation.PageObjectModel.LandingPage;
+import TamishraAutomation.PageObjectModel.ProductCatalogue;
+import TamishraAutomation.PageObjectModel.checkOutProduct;
+import io.github.bonigarcia.wdm.WebDriverManager;
+
+public class StandAloneTest {
+
+	public static void main(String[] args) throws InterruptedException {
+		
+		WebDriverManager.chromedriver().setup();
+		WebDriver driver= new ChromeDriver();
+		driver.manage().window().maximize();
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		//WebDriverWait wait= new WebDriverWait(driver, Duration.ofSeconds(5));
+		String Item= "ZARA COAT 3";
+		String Cont= "Ind";
+		LandingPage cred= new LandingPage(driver);
+		cred.goTo();
+		ProductCatalogue productCatalogue=cred.LoginApplication("senapatitamishra1@gmail.com", "Dholu@17");
+		
+		//ProductCatalogue productCatalogue = new ProductCatalogue(driver);
+		//List<WebElement> products=productCatalogue.getProductList();
+		productCatalogue.productAddToCart(Item);
+		CartPage cartPage= productCatalogue.goToCart();
+		//CartPage cartPage= new CartPage(driver);
+		boolean match=cartPage.verifyCartProducts(Item);
+		Assert.assertTrue(match);
+				
+		cartPage.checkOutProduct();
+		
+		checkOutProduct checkOut= new checkOutProduct(driver);
+		checkOut.SelectCountry(Cont);
+		ConfirmationPage confirmationPage=checkOut.submitOrder();
+		 
+		String Conformmessage= confirmationPage.verifyConformationMessage();
+		Assert.assertTrue(Conformmessage.equalsIgnoreCase("Thankyou for the order."));
+		
+		driver.close();
+
+	}
+
+}

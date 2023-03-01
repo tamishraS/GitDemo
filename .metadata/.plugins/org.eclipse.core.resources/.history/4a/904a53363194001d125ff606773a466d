@@ -1,0 +1,56 @@
+import java.io.File;
+import java.io.IOException;
+import java.util.Iterator;
+import java.util.Set;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WindowType;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class InvokingNewWinOrTab {
+
+	public static void main(String[] args) throws IOException {
+		
+
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\tamishra.senapati\\Downloads\\chromedriver_win32\\chromedriver.exe");
+		WebDriver driver= new ChromeDriver();
+		driver.get("https://rahulshettyacademy.com/angularpractice/");
+		
+		//Opening in new tab
+		//driver.switchTo().newWindow(WindowType.TAB);
+		
+		//Opening in new Window
+		driver.switchTo().newWindow(WindowType.WINDOW);
+		
+		//Getting control in in window
+		Set<String> allWins= driver.getWindowHandles();
+		Iterator<String> itr= allWins.iterator();
+		String parentWin= itr.next();
+		String childWin= itr.next();
+		driver.switchTo().window(childWin);
+		driver.get("https://rahulshettyacademy.com/");
+		
+		//getting url of 1st course in child window
+		String course= driver.findElements(By.cssSelector("a[href*='https://courses.rahulshettyacademy.com/p/']")).get(1).getText();
+		
+		//switching to parent window
+		driver.switchTo().window(parentWin);
+		
+		//inserting url of 1st course in parent window editText box of parent window
+		WebElement name=driver.findElement(By.name("name"));
+		name.sendKeys(course);
+		
+		//To take screenShot of name Editbox
+		File file= name.getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(file, new File("logo.png"));
+		
+		
+		//driver.quit();
+
+	}
+
+}

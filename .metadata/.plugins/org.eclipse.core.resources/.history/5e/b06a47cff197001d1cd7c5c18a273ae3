@@ -1,0 +1,16 @@
+package TamishraAutomation.PageObjectModel;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.PageFactory;
+
+import TamishraAutomation.AbstractComponents.AbstractComponents;
+
+public class checkOutProduct extends AbstractComponents {
+	WebDriver driver;
+	public checkOutProduct(WebDriver driver) {
+		super(driver);
+		this.driver= driver;
+		PageFactory.initElements(driver, this);
+	}
+
+}

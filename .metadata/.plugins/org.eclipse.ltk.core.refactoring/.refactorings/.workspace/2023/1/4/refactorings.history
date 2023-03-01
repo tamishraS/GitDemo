@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy 0 packages to &apos;src&apos;&#x0D;&#x0A;- Destination element: &apos;src&apos;" description="Copy packages" flags="589830" fragments="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1674454543695" target="/SeleniumFrameworkDesign/src" version="1.0"/>
+</session>

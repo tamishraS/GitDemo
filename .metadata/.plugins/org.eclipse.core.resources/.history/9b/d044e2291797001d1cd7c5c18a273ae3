@@ -1,0 +1,5 @@
+package TamishraAutomation.PageObjectModel;
+
+public class LandingPage {
+
+}
