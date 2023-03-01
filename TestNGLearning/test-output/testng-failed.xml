@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Loan]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Property Loan(failed)">
+    <groups>
+      <run>
+        <exclude name="Smoke"/>
+      </run>
+    </groups>
+    <classes>
+      <class name="Default.Basics">
+        <methods>
+          <include name="c2"/>
+        </methods>
+      </class> <!-- Default.Basics -->
+      <class name="Default.Basic2">
+        <methods>
+          <include name="mobileAutocarLoan"/>
+          <include name="beforeMethod"/>
+          <include name="webAutocarLoan"/>
+        </methods>
+      </class> <!-- Default.Basic2 -->
+    </classes>
+  </test> <!-- Property Loan(failed) -->
+</suite> <!-- Failed suite [Loan] -->

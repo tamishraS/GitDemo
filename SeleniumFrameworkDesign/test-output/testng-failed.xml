@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite parallel="methods" name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" parallel="methods" name="Submit Order Test(failed)">
+    <classes>
+      <class name="TamishraAutomation.SubmitOrderTest">
+        <methods>
+          <include name="tearDown"/>
+          <include name="orderHistoryTest"/>
+          <include name="launchApplication"/>
+          <include name="submitOrder"/>
+        </methods>
+      </class> <!-- TamishraAutomation.SubmitOrderTest -->
+    </classes>
+  </test> <!-- Submit Order Test(failed) -->
+  <test thread-count="5" parallel="methods" name="Error Validation Test(failed)">
+    <classes>
+      <class name="TamishraAutomation.ErrorValidationTest">
+        <methods>
+          <include name="loginErrorValidation"/>
+          <include name="productErrorValidation"/>
+          <include name="tearDown"/>
+          <include name="launchApplication"/>
+        </methods>
+      </class> <!-- TamishraAutomation.ErrorValidationTest -->
+    </classes>
+  </test> <!-- Error Validation Test(failed) -->
+</suite> <!-- Failed suite [Suite] -->
