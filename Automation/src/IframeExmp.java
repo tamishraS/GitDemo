@@ -1,10 +1,9 @@
+import org.testng.annotations.Test;
 
 public class IframeExmp {
-
-	public static void main(String[] args) {
-		
-		System.out.println("It is GitDemo");
-
+@Test
+	public void Demo() {
+		System.out.println("Ademo from GitDemo");
 	}
 
 }
