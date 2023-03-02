@@ -10,5 +10,10 @@ public class IframeExmp {
 @Test
 	public void NextDemo() {
 	System.out.println("A demo from GitStuff");
+	System.out.println("commit to new branch");
 	}
+@Test
+public void BrachDemo() {
+	System.out.println("new branching");
+}
 }
